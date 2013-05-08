@@ -176,6 +176,7 @@ public class RabbitmqRiver extends AbstractRiverComponent implements River {
                 try {
                     connection = connectionFactory.newConnection(rabbitAddresses);
                     channel = connection.createChannel();
+                    channel.basicQos(4000);
                 } catch (Exception e) {
                     if (!closed) {
                         logger.warn("failed to created a connection / channel", e);
